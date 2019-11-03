@@ -12,3 +12,17 @@ gradle-app.setting
 
 # # Work around https://youtrack.jetbrains.com/issue/IDEA-116898
 # gradle/wrapper/gradle-wrapper.properties
+
+# Compiled class file
+*.class
+
+# Log file
+*.log
+
+### Gradle ###
+.gradle
+/build/
+
+# Mac DS file
+.DS_Store
+
