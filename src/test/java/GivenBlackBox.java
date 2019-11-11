@@ -72,6 +72,18 @@ public class GivenBlackBox {
     Course noPoints;
     HashMap<String, String> noPointsExpected = new HashMap<String, String>();
 
+    Course communism;
+    HashMap<String, String> communismExpected = new HashMap<String, String>();
+    
+    Course negativeCurve;
+    HashMap<String, String> negativeCurveExpected = new HashMap<String, String>();
+    
+    Course hugePoints;
+    HashMap<String, String> hugePointsExpected = new HashMap<String, String>();
+    
+    Course emptyCourse;
+    HashMap<String, String> emptyCourseExpected = new HashMap<String, String>();
+
     @Before
     public void setUp() throws Exception {
 
@@ -111,7 +123,6 @@ public class GivenBlackBox {
         //5 students from example
         fiveStudents = createCourse("ser318");
         
-        fiveStudents.setMaxPoints(100);
         fiveStudents.set_points("Alice", 15);
         fiveStudentsExpected.put("Alice", "F");
         fiveStudents.set_points("Bill", 30);
@@ -126,8 +137,8 @@ public class GivenBlackBox {
         // Bad Day Case Grade Boundaries
         // Four Students all negative points
         badDayGradeBoundary = createCourse("SER319");
-        badDayGradeBoundary.setMaxPoints(-1);
-        badDayGradeBoundary.set_points("100"  , -100);  //A
+        badDayGradeBoundary.setMaxPoints(-100);
+        badDayGradeBoundary.set_points("100"  , 100);  //A
         badDayGradeBoundary.set_points(">89"  , -90);  //A
         badDayGradeBoundary.set_points(">79"  , -89);  //B
         badDayGradeBoundary.set_points(">59"  , -79);  //C
@@ -147,14 +158,6 @@ public class GivenBlackBox {
         // this would be the expected result after the method countOccurencesLetterGrades is called
         emptyStudents.set_points("", 50);
         emptyStudentsExpected.put("", "A"); 
-        emptyStudents.set_points("", 40);
-        emptyStudentsExpected.put("", "B");
-        emptyStudents.set_points("", 30);
-        emptyStudentsExpected.put("", "C");
-        emptyStudents.set_points("", 20);
-        emptyStudentsExpected.put("", "D");
-        emptyStudents.set_points("", 10);
-        emptyStudentsExpected.put("", "F");
         
         //5 students, all get 0 points
         totalFailure = createCourse("ser321");
@@ -168,30 +171,76 @@ public class GivenBlackBox {
         totalFailureExpected.put("Kathy", "F");
         totalFailure.set_points("Joe", 0);
         totalFailureExpected.put("Joe", "F");
-        totalFailure.set_points("Jane", 0);
+        totalFailure.set_points("Jane", -1);
         totalFailureExpected.put("Jane", "F");
         
         //5 students, all get > max points
         overAchievers = createCourse("ser322");
         
         overAchievers.setMaxPoints(10);
-        overAchievers.set_points("Alice", 100);
-        overAchieversExpected.put("Alice", "F");
+        overAchievers.set_points("Alice", 200);
+        overAchieversExpected.put("Alice", "A");
         overAchievers.set_points("Bill", 100);
-        overAchieversExpected.put("Bill", "F");
+        overAchieversExpected.put("Bill", "A");
         overAchievers.set_points("Kathy", 100);
-        overAchieversExpected.put("Kathy", "F");
+        overAchieversExpected.put("Kathy", "A");
         overAchievers.set_points("Joe", 100);
-        totalFailureExpected.put("Joe", "F");
-        overAchievers.set_points("Jane", 100);
+        overAchieversExpected.put("Joe", "A");
+        overAchievers.set_points("Jane", -100);
         overAchieversExpected.put("Jane", "F");
         
-      //5 students, all get > max points
+        //null student with 0 points
         noPoints = createCourse("ser323");
         
-        noPoints.set_points((String) null, 1/10);
-        noPointsExpected.put((String) null, (String) null);
+        noPoints.set_points(null, 0);
+        noPointsExpected.put(null, "A");
+
+        //all students are given 100
+        communism = createCourse("ser324");
         
+        communism.setMaxPoints(10);
+        communism.set_points("student 1", 10);
+        communismExpected.put("student 1", "A");
+        communism.set_points("student 2", 10);
+        communismExpected.put("student 2", "A");
+        
+        //5 students, one gets > max points
+        negativeCurve = createCourse("ser325");
+        
+        negativeCurve.set_points("Alice", 200);
+        negativeCurveExpected.put("Alice", "A");
+        negativeCurve.set_points("Bill", 100);
+        negativeCurveExpected.put("Bill", "A");
+        negativeCurve.set_points("Kathy", 90);
+        negativeCurveExpected.put("Kathy", "A");
+        negativeCurve.set_points("Joe", 50);
+        negativeCurveExpected.put("Joe", "D");
+        negativeCurve.set_points("Jane", -10);
+        negativeCurveExpected.put("Jane", "F");
+
+        //uses large ints
+        hugePoints = createCourse("ser326");
+        
+        hugePoints.setMaxPoints(Integer.MIN_VALUE);
+        hugePoints.set_points("stud1", 1);
+        hugePointsExpected.put("stud1", "A");
+        hugePoints.set_points("stud2", Integer.MIN_VALUE);
+        hugePointsExpected.put("stud2", "A");
+        hugePoints.set_points("stud3", 0);
+        hugePointsExpected.put("stud3", "A");
+        hugePoints.set_points("stud4", Integer.MAX_VALUE);
+        hugePointsExpected.put("stud4", "A");
+        
+        //empty course
+        emptyCourse = createCourse(null);
+
+        emptyCourse.setMaxPoints(00);
+        emptyCourse.set_points("a", 1000);
+        emptyCourseExpected.put("a", "F");
+        emptyCourse.set_points("b", -1000);
+        emptyCourse.set_points("c", 0);
+        emptyCourseExpected.put("c", "F");
+        emptyCourse.SetName("new");
     }
 
     @After
@@ -271,5 +320,36 @@ public class GivenBlackBox {
             System.out.println(e.getKey() + " " + e.getValue());
         assertTrue(ans.equals(noPointsExpected));
     }
+    
+    @Test
+    public void communism() {
+        Map<String, String> ans = communism.curveLetterGrades();
+        for(Map.Entry<String, String> e : ans.entrySet())
+            System.out.println(e.getKey() + " " + e.getValue());
+        assertTrue(ans.equals(communismExpected));
+    }
+    
+    @Test
+    public void negativeCurve() {
+        Map<String, String> ans = negativeCurve.curveLetterGrades();
+        for(Map.Entry<String, String> e : ans.entrySet())
+            System.out.println(e.getKey() + " " + e.getValue());
+        assertTrue(ans.equals(negativeCurveExpected));
+    }
 
+    @Test
+    public void hugePoints() {
+        Map<String, String> ans = hugePoints.curveLetterGrades();
+        for(Map.Entry<String, String> e : ans.entrySet())
+            System.out.println(e.getKey() + " " + e.getValue());
+        assertTrue(ans.equals(hugePointsExpected));
+    }
+
+    @Test
+    public void emptyCourse() {
+        Map<String, String> ans = emptyCourse.curveLetterGrades();
+        for(Map.Entry<String, String> e : ans.entrySet())
+            System.out.println(e.getKey() + " " + e.getValue());
+        assertTrue(ans.equals(emptyCourseExpected));
+    }
 }
