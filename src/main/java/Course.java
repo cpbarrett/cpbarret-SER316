@@ -156,12 +156,12 @@ public class Course {
     public int calculateMax() throws NullPointerException {
         ArrayList<Integer> collection = new ArrayList<Integer>(points.values());
 
-        if(collection == null) {
+        if(collection.isEmpty()) {
             return 0;
         }
 
         if(collection.size() == 1) {
-            return -1;
+            return collection.get(0);
         }
 
         int max = Integer.MIN_VALUE;
