@@ -39,15 +39,13 @@ public class Course {
 
 
     public void printCourseStats() {
-        ArrayList<Integer> values = new ArrayList<Integer>(points.values());
-
         System.out.print("Average Grades without max and without min: ");
         System.out.println(this.calculateAverageWithoutMinWithoutMax());
     }
 
 
     public double calculateAverageWithoutMinWithoutMax() throws NullPointerException {
-        ArrayList<Integer> collection = new ArrayList<Integer>(points.values());
+        ArrayList<Integer> collection = getValues();
 
         int counter = 0;
         int min = Integer.MAX_VALUE;
@@ -129,6 +127,10 @@ public class Course {
     public ArrayList<Student> getStudents(){
         return students;
     }
+    
+    public ArrayList<Integer> getValues(){
+    	return new ArrayList<Integer>(points.values());
+    }
 
     public ArrayList<Double> calculatePercentiles(ArrayList<Integer> collection) throws NullPointerException{
         if (collection == null) {
@@ -154,7 +156,7 @@ public class Course {
     }
 
     public int calculateMax() throws NullPointerException {
-        ArrayList<Integer> collection = new ArrayList<Integer>(points.values());
+        ArrayList<Integer> collection = getValues();
 
         if(collection.isEmpty()) {
             return 0;
@@ -205,7 +207,7 @@ public class Course {
         occur.put("F", 0);
 
         if(!curved) {
-            ArrayList<Integer> collection = new ArrayList<Integer>(points.values());
+            ArrayList<Integer> collection = getValues();
             if (collection.isEmpty()) {
                 throw new NullPointerException();
             }
