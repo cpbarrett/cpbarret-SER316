@@ -13,7 +13,7 @@
 | 5 | Student.java Line 29 | Feature Envy: this class includes too methods that should be inside of the Major class  | CS 4 | LOW |
 | 6 | Course.java Line 163 | calculateMax() returns -1 if the collection contains only 1 item  | FD | BR |
 | 7 | Course.java Line 42 | ArrayList\&lt;Integer\&gt; values = new ArrayList\&lt;Integer\&gt;(points.values()); is duplicated many times throughout the Course.java Class. It would be better to have a single getter method for this statement.  | CS 1 | MJ |
-|   |   |    |   |   |
+| 8 | Course.java Line 159 | Dead code here. Collection cannot be null as it is not a function parameter. | FD | MJ |
 |   |   |    |   |   |
 |   |   |    |   |   |
 |   |   |    |   |   |
