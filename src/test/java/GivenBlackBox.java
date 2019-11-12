@@ -240,7 +240,7 @@ public class GivenBlackBox {
         emptyCourse.set_points("b", -1000);
         emptyCourse.set_points("c", 0);
         emptyCourseExpected.put("c", "F");
-        emptyCourse.SetName("new");
+        emptyCourse.setName("new");
     }
 
     @After

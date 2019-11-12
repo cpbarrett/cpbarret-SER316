@@ -25,15 +25,15 @@ public class Course {
     }
 
     public Course(String name, int maxPoints) {
-        this.SetName(name);
+        this.setName(name);
         this.maxPoints = maxPoints;
     }
 
-    public String GetName() {
+    public String getName() {
         return Name;
     }
 
-    public void SetName(String name) {
+    public void setName(String name) {
         this.Name = name;
     }
 
