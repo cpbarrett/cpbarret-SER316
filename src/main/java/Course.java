@@ -256,7 +256,36 @@ public class Course {
      * @return hashmap with final letter grades for students based on curving `points`.
      * @throws NullPointerException
      */
-    public Map<String, String> curveLetterGrades() throws NullPointerException { //TODO verify no side effect with points.
+    public HashMap<String, String> curveLetterGrades() throws NullPointerException { //TODO verify no side effect with points.
+    	ArrayList<Student> theClass = getStudents();
+    	if(theClass.isEmpty()) {
+    		throw new NullPointerException();
+    	}
+    	HashMap<String,String> finalGrades = new HashMap<String,String>();
+    	
+    	int curve = getMaxPoints() - calculateMax();
+    	
+    	for(Student student: theClass) {
+    		this.set_points(student.getAsurite(), getStudent_Points(student)+curve);
+    		
+    		double grade = getStudent_Points(student);
+    		if((double)grade/maxPoints*100 > 89.0) {
+    			finalGrades.put(student.getAsurite(), "A");
+    		}
+    		else if ((double)grade/maxPoints * 100 > 80.0 && (double)grade/maxPoints <= 89.0) {
+    			finalGrades.put(student.getAsurite(), "B");
+    		}
+    		else if ((double)grade/maxPoints * 100 > 70.0 && (double)grade/maxPoints <= 79.0) {
+    			finalGrades.put(student.getAsurite(), "C");
+    		}
+    		else if ((double)grade/maxPoints * 100 > 60.0 && (double)grade/maxPoints <= 69.0) {
+    			finalGrades.put(student.getAsurite(), "D");
+    		}
+    		else {
+    			finalGrades.put(student.getAsurite(), "F");
+    		}
+    	} 
+    	
         return null; //implement me in assign 3 (not in assign 2)
     }
 
