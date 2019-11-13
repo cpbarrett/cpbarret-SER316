@@ -215,11 +215,11 @@ public class Course {
             for (double value : collection) {
                 if ((double)value/maxPoints*100 > 89.0) {
                     occur.put("A", occur.get("A") + 1);
-                } else if ((double)value/maxPoints * 100 > 80.0 && value/maxPoints <= 89.0) {
+                } else if ((double)value/maxPoints * 100 > 79.0 && value/maxPoints <= 89.0) { //changed to match scale
                     occur.put("B", occur.get("B") + 1);
-                } else if ((double)value/maxPoints * 100 > 50.0 && value/maxPoints <= 65) {
+                } else if ((double)value/maxPoints * 100 > 59.0 && value/maxPoints <= 79.0) { //changed to match scale
                     occur.put("C", occur.get("C") + 1);
-                } else if ((double)value/maxPoints*100 > 35.0 && value/maxPoints <= 50.0) {
+                } else if ((double)value/maxPoints*100 > 35.0 && value/maxPoints <= 59.0) { //changed to match scale
                     occur.put("D", occur.get("D") + 1);
                 } else {
                     occur.put("F", occur.get("F") + 1);
@@ -227,10 +227,9 @@ public class Course {
             }
         } else {
             for(String grade : curveLetterGrades().values())
-                occur.put(grade, occur.get(occur) + 1);
+                occur.put(grade, occur.get(grade) + 1);	//changed to match the correct input type
         }
         return occur;
-
     }
 
     /** This will be needed for assignment 3 (do not change in assignment 2)
@@ -256,7 +255,7 @@ public class Course {
      * @return hashmap with final letter grades for students based on curving `points`.
      * @throws NullPointerException
      */
-    public HashMap<String, String> curveLetterGrades() throws NullPointerException { //TODO verify no side effect with points.
+    public Map<String, String> curveLetterGrades() throws NullPointerException { //TODO verify no side effect with points.
     	ArrayList<Student> theClass = getStudents();
     	if(theClass.isEmpty()) {
     		throw new NullPointerException();
@@ -272,13 +271,13 @@ public class Course {
     		if((double)grade/maxPoints*100 > 89.0) {
     			finalGrades.put(student.getAsurite(), "A");
     		}
-    		else if ((double)grade/maxPoints * 100 > 80.0 && (double)grade/maxPoints <= 89.0) {
+    		else if ((double)grade/maxPoints * 100 > 79.0 && (double)grade/maxPoints <= 89.0) {
     			finalGrades.put(student.getAsurite(), "B");
     		}
-    		else if ((double)grade/maxPoints * 100 > 70.0 && (double)grade/maxPoints <= 79.0) {
+    		else if ((double)grade/maxPoints * 100 > 59.0 && (double)grade/maxPoints <= 79.0) {
     			finalGrades.put(student.getAsurite(), "C");
     		}
-    		else if ((double)grade/maxPoints * 100 > 60.0 && (double)grade/maxPoints <= 69.0) {
+    		else if ((double)grade/maxPoints * 100 > 35.0 && (double)grade/maxPoints <= 59.0) {
     			finalGrades.put(student.getAsurite(), "D");
     		}
     		else {
@@ -286,7 +285,7 @@ public class Course {
     		}
     	} 
     	
-        return null; //implement me in assign 3 (not in assign 2)
+        return finalGrades; //implement me in assign 3 (not in assign 2)
     }
 
 
