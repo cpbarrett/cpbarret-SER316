@@ -264,7 +264,7 @@ public class Course {
     	
     	int curve = Math.abs(getMaxPoints() - calculateMax());
     	
-    	for(int i = 0; i < theClass.size(); i=i+2) {
+    	for(int i = 0; i < theClass.size(); i=i+2) { //this is done because getStudents() produces duplicate values somewhere
     		Student student = theClass.get(i);
     		set_points(student.getAsurite(), getStudent_Points(student)+curve);
     		

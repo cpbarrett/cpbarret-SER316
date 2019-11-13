@@ -8,6 +8,7 @@ import org.junit.Test;
 
 public class CourseTest {
 	Course test;
+	Course empty;
 
 	@Before
 	public void setUp() throws Exception {
@@ -17,16 +18,29 @@ public class CourseTest {
 		test.set_points("Cathy", 45);
 		test.set_points("Joe", 70);
 		test.set_points("Jane", 80);
+		
+		empty = new Course("SER317");
 	}
 
 	@After
 	public void tearDown() throws Exception {
 	}
+	
+	@Test
+	public void addAndDropTest() {
+		Student s = new Student("Joey", Major.SER);
+		assertTrue(test.addStudent(s));
+		assertFalse(test.addStudent(s));
+		assertTrue(test.dropStudent("Joey"));
+		assertFalse(test.dropStudent("Joey"));
+		assertTrue(empty.addStudent(s));			
+	}	
 
 	@Test
 	public void uncurvedFiveStudents() {
+		test.set_points("Joey", 100);
 		HashMap<String, Integer> uncurved = test.countOccurencesLetterGrades(false);
-		assertTrue(uncurved.get("A") == 0);
+		assertTrue(uncurved.get("A") == 1);
         assertTrue(uncurved.get("B") == 1);
         assertTrue(uncurved.get("C") == 1);
         assertTrue(uncurved.get("D") == 1);
@@ -41,6 +55,22 @@ public class CourseTest {
         assertTrue(curved.get("C") == 1);
         assertTrue(curved.get("D") == 1);
         assertTrue(curved.get("F") == 1);
+        assertTrue(test.getName().equals("SER316"));
 	}
-
+	
+	@Test
+	public void uncurvedemptyCourse() {		
+		try {
+			empty.countOccurencesLetterGrades(false);
+	        fail("no exception thrown");
+	    } catch (Throwable expected) {
+	        assertEquals(NullPointerException.class, expected.getClass());
+	    }
+    	try {
+			empty.curveLetterGrades();
+	        fail("no exception thrown");
+	    } catch (Throwable expected) {
+	        assertEquals(NullPointerException.class, expected.getClass());
+	    }		
+	}
 }
