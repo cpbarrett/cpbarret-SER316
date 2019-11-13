@@ -49,9 +49,10 @@ public class CourseTest {
 	
 	@Test
 	public void curvedFiveStudents() {
+		test.set_points("Joe", 60);
 		HashMap<String, Integer> curved = test.countOccurencesLetterGrades(true);
-		assertTrue(curved.get("A") == 2);
-        assertTrue(curved.get("B") == 0);
+		assertTrue(curved.get("A") == 1);
+        assertTrue(curved.get("B") == 1);
         assertTrue(curved.get("C") == 1);
         assertTrue(curved.get("D") == 1);
         assertTrue(curved.get("F") == 1);
