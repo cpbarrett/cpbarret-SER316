@@ -250,7 +250,7 @@ public class Course {
      * curve would be 100 - 80 = 20.
      * Adjusted points would be = [Alice:35, Bill:50, Cathy:65, Joe:90, Jane:100].
      * Adjusted percentages would be = [35%, 50%, 65%, 90%, 100%].
-     * Returned HashMap points would be = [Alice:F, Bill:D, Cathy:C, Joe:A, Jane:A].
+     * Returned HashMap points would be = [Alice:F, Bill:C, Cathy:C, Joe:A, Jane:A].
      *
      * @return hashmap with final letter grades for students based on curving `points`.
      * @throws NullPointerException
@@ -262,12 +262,14 @@ public class Course {
     	}
     	HashMap<String,String> finalGrades = new HashMap<String,String>();
     	
-    	int curve = getMaxPoints() - calculateMax();
+    	int curve = Math.abs(getMaxPoints() - calculateMax());
     	
-    	for(Student student: theClass) {
-    		this.set_points(student.getAsurite(), getStudent_Points(student)+curve);
+    	for(int i = 0; i < theClass.size(); i=i+2) {
+    		Student student = theClass.get(i);
+    		set_points(student.getAsurite(), getStudent_Points(student)+curve);
     		
     		double grade = getStudent_Points(student);
+    		
     		if((double)grade/maxPoints*100 > 89.0) {
     			finalGrades.put(student.getAsurite(), "A");
     		}
@@ -283,9 +285,8 @@ public class Course {
     		else {
     			finalGrades.put(student.getAsurite(), "F");
     		}
-    	} 
-    	
-        return finalGrades; //implement me in assign 3 (not in assign 2)
+    	}
+    	return finalGrades; //implement me in assign 3 (not in assign 2)
     }
 
 

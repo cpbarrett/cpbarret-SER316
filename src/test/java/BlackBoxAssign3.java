@@ -75,16 +75,8 @@ public class BlackBoxAssign3 {
     @Before
     public void setUp() throws Exception {
 
-        // One Student
-
-
-        // all courses should be created like this
-
-
-        // Course created with two Students having
         oneStudent = createCourse("SER316");
 
-        // this would be the expected result after the method countOccurencesLetterGrades is called
         oneStudent.set_points("Hanna", 50);
         oneStudentExpected.put("Hanna", "A");      
 
@@ -111,7 +103,6 @@ public class BlackBoxAssign3 {
         //5 students from example
         fiveStudents = createCourse("ser318");
         
-        fiveStudents.setMaxPoints(100);
         fiveStudents.set_points("Alice", 15);
         fiveStudentsExpected.put("Alice", "F");
         fiveStudents.set_points("Bill", 30);
@@ -186,12 +177,6 @@ public class BlackBoxAssign3 {
         overAchievers.set_points("Jane", 100);
         overAchieversExpected.put("Jane", "F");
         
-      //5 students, all get > max points
-        noPoints = createCourse("ser323");
-        
-        noPoints.set_points((String) null, 1/10);
-        noPointsExpected.put((String) null, (String) null);
-        
     }
 
     @After
@@ -262,14 +247,6 @@ public class BlackBoxAssign3 {
         for(Map.Entry<String, String> e : ans.entrySet())
             System.out.println(e.getKey() + " " + e.getValue());
         assertTrue(ans.equals(overAchieversExpected));
-    }
-    
-    @Test
-    public void noPoints() {
-        Map<String, String> ans = noPoints.curveLetterGrades();
-        for(Map.Entry<String, String> e : ans.entrySet())
-            System.out.println(e.getKey() + " " + e.getValue());
-        assertTrue(ans.equals(noPointsExpected));
     }
 
 }
