@@ -26,9 +26,6 @@ gradle-app.setting
 # Mac DS file
 .DS_Store
 
-<<<<<<< HEAD
-/bin/
-=======
 ### Eclipse Patch ###
 # Eclipse Core
 .project
@@ -62,4 +59,3 @@ gradle-app.setting
 *.zip
 *.tar.gz
 *.rar
->>>>>>> master
