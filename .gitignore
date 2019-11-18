@@ -1,6 +1,3 @@
-.gradle
-/build/
-
 # Ignore Gradle GUI config
 gradle-app.setting
 
@@ -12,9 +9,6 @@ gradle-app.setting
 
 # # Work around https://youtrack.jetbrains.com/issue/IDEA-116898
 # gradle/wrapper/gradle-wrapper.properties
-
-# Compiled class file
-*.class
 
 # Log file
 *.log
@@ -59,3 +53,12 @@ gradle-app.setting
 *.zip
 *.tar.gz
 *.rar
+
+#Don't Exclude CLS Files
+!/cls
+!CourseGrades0.class
+!CourseGrades1.class
+!CourseGrades2.class
+!CourseGrades3.class
+!CourseGrades4.class
+!CourseGrades5.class
