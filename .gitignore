@@ -59,3 +59,10 @@ gradle-app.setting
 *.zip
 *.tar.gz
 *.rar
+
+#Course Grade class exclusions:
+!CourseGrades0.class
+!CourseGrades1.class
+!CourseGrades2.class
+!CourseGrades3.class
+!CourseGrades4.class
