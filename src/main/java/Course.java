@@ -61,7 +61,7 @@ public class Course {
             for(int point: collection){
                 if (point >= 0) {
 
-                    counter = counter++;
+                    counter++;
                     if (point < min){
                         min = point;
                     }
@@ -255,7 +255,7 @@ public class Course {
      * @return hashmap with final letter grades for students based on curving `points`.
      * @throws NullPointerException
      */
-    public Map<String, String> curveLetterGrades() throws NullPointerException { //TODO verify no side effect with points.
+    public Map<String, String> curveLetterGrades() throws NullPointerException {
     	ArrayList<Student> theClass = getStudents();
     	if(theClass.isEmpty()) {
     		throw new NullPointerException();

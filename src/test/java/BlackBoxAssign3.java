@@ -56,21 +56,12 @@ public class BlackBoxAssign3 {
 
     Course fiveStudents;
     HashMap<String, String> fiveStudentsExpected = new HashMap<String, String>();
-    
-    Course badDayGradeBoundary;
-    HashMap<String, String> badDayGradeBoundaryExpected = new HashMap<String, String>();
-    
+        
     Course emptyStudents;
     HashMap<String, String> emptyStudentsExpected = new HashMap<String, String>();
     
-    Course totalFailure;
-    HashMap<String, String> totalFailureExpected = new HashMap<String, String>();
-    
     Course overAchievers;
     HashMap<String, String> overAchieversExpected = new HashMap<String, String>();
-    
-    Course noPoints;
-    HashMap<String, String> noPointsExpected = new HashMap<String, String>();
 
     @Before
     public void setUp() throws Exception {

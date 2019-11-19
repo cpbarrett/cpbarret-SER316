@@ -54,5 +54,11 @@ public class Student {
         Student s = (Student) other;
         return this.getAsurite().equals(s.getAsurite());
     }
+    
+    public int hashCode() {
+        assert false : "hashCode not designed";
+        return 42; // any arbitrary constant will do
+    }
+
 
 }
