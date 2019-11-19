@@ -147,8 +147,8 @@ public class Course {
         return students;
     }
     
-    public ArrayList<Integer> getValues(){
-    	return new ArrayList<Integer>(points.values());
+    public ArrayList<Integer> getValues() {
+        return new ArrayList<Integer>(points.values());
     }
 
     /**
@@ -238,7 +238,7 @@ public class Course {
         occur.put("D", 0);
         occur.put("F", 0);
 
-        if(!curved) {
+        if (!curved) {
             ArrayList<Integer> collection = getValues();
 
             if (collection.isEmpty()) {

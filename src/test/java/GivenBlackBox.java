@@ -200,7 +200,6 @@ public class GivenBlackBox {
         overAchieversExpected.put("Joe", "A");
         overAchievers.set_points("Jane", -100);
         overAchieversExpected.put("Jane", "F");
-<<<<<<< HEAD
         
         //null student with 0 points
         noPoints = createCourse("ser323");
@@ -347,32 +346,36 @@ public class GivenBlackBox {
     @Test
     public void communism() {
         Map<String, String> ans = communism.curveLetterGrades();
-        for(Map.Entry<String, String> e : ans.entrySet())
+        for (Map.Entry<String, String> e : ans.entrySet()) {
             System.out.println(e.getKey() + " " + e.getValue());
+        }
         assertTrue(ans.equals(communismExpected));
     }
     
     @Test
     public void negativeCurve() {
         Map<String, String> ans = negativeCurve.curveLetterGrades();
-        for(Map.Entry<String, String> e : ans.entrySet())
+        for (Map.Entry<String, String> e : ans.entrySet()) {
             System.out.println(e.getKey() + " " + e.getValue());
+        }
         assertTrue(ans.equals(negativeCurveExpected));
     }
 
     @Test
     public void hugePoints() {
         Map<String, String> ans = hugePoints.curveLetterGrades();
-        for(Map.Entry<String, String> e : ans.entrySet())
+        for (Map.Entry<String, String> e : ans.entrySet()) {
             System.out.println(e.getKey() + " " + e.getValue());
+        }
         assertTrue(ans.equals(hugePointsExpected));
     }
 
     @Test
     public void emptyCourse() {
         Map<String, String> ans = emptyCourse.curveLetterGrades();
-        for(Map.Entry<String, String> e : ans.entrySet())
+        for (Map.Entry<String, String> e : ans.entrySet()) {
             System.out.println(e.getKey() + " " + e.getValue());
+        }
         assertTrue(ans.equals(emptyCourseExpected));
     }
 }
