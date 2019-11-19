@@ -42,8 +42,6 @@ public class Course {
      * Prints course avg grades.
      */
     public void printCourseStats() {
-        ArrayList<Integer> values = new ArrayList<Integer>(points.values());
-
         System.out.print("Average Grades without max and without min: ");
         System.out.println(this.calculateAverageWithoutMinWithoutMax());
     }
@@ -66,7 +64,7 @@ public class Course {
             for (int point: collection) {
                 if (point >= 0) {
 
-                    counter = counter++;
+                    counter++;
                     if (point < min) {
                         min = point;
                     }
@@ -187,8 +185,8 @@ public class Course {
     public int calculateMax() throws NullPointerException {
         ArrayList<Integer> collection = new ArrayList<Integer>(points.values());
 
-        if (collection == null) {
-            return 0;
+        if (collection.isEmpty()) {
+            throw new NullPointerException();
         }
 
         if (collection.size() == 1) {
@@ -257,7 +255,7 @@ public class Course {
             }
         } else {
             for (String grade : curveLetterGrades().values()) {
-                occur.put(grade, occur.get(occur) + 1);
+                occur.put(grade, occur.get(grade) + 1);
             }
         }
         return occur;
