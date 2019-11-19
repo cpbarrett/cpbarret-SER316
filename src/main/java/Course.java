@@ -288,11 +288,33 @@ public class Course {
      * @throws NullPointerException if class is empty
      */
     public Map<String, String> curveLetterGrades() throws NullPointerException {
-        return null; //implement me in assign 3 (not in assign 2)
+        ArrayList<Student> theClass = getStudents();
+        if (theClass.isEmpty()) {
+            throw new NullPointerException();
+        }
+        HashMap<String,String> finalGrades = new HashMap<String,String>();
+
+        int curve = Math.abs(getMaxPoints() - calculateMax());
+
+        //this is done because getStudents() produces duplicate values somewhere
+        for (int i = 0; i < theClass.size(); i = i + 2) { 
+            Student student = theClass.get(i);
+            set_points(student.getAsurite(), getStudent_Points(student) + curve);
+
+            double grade = getStudent_Points(student);
+
+            if ((double)grade / maxPoints * 100 > 89.0) {
+                finalGrades.put(student.getAsurite(), "A");
+            } else if ((double)grade / maxPoints * 100 > 79.0 && grade / maxPoints <= 89.0) {
+                finalGrades.put(student.getAsurite(), "B");
+            } else if ((double)grade / maxPoints * 100 > 59.0 && grade / maxPoints <= 79.0) {
+                finalGrades.put(student.getAsurite(), "C");
+            } else if ((double)grade / maxPoints * 100 > 35.0 && grade / maxPoints <= 59.0) {
+                finalGrades.put(student.getAsurite(), "D");
+            } else {
+                finalGrades.put(student.getAsurite(), "F");
+            }
+        }
+        return finalGrades;
     }
-
-
-
-
-
 }
