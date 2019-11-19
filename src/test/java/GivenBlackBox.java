@@ -1,10 +1,4 @@
-import main.java.*;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
-import org.junit.runners.Parameterized.Parameters;
+import static org.junit.Assert.assertTrue;
 
 import java.lang.reflect.Constructor;
 import java.util.Arrays;
@@ -12,10 +6,19 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-import main.java.Course;
-//import cls.main.java;
+import main.java.*;
 
-import static org.junit.Assert.*;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
+import org.junit.runners.Parameterized.Parameters;
+
+
+
+//import main.java.Course;
+//import cls.main.java;
 
 @RunWith(Parameterized.class)
 public class GivenBlackBox {
@@ -26,6 +29,10 @@ public class GivenBlackBox {
         this.classUnderTest = (Class<Course>) classUnderTest;
     }
 
+    /**
+     * The course grades being tested.
+     * @return
+     */
     @Parameters
     public static Collection<Object[]> courseGradesUnderTest() {
         Object[][] classes = {
@@ -50,25 +57,25 @@ public class GivenBlackBox {
 
     Course happyDayGradeBoundary;
     HashMap<String, String> happyDayGradeBoundaryExpected = new HashMap<String, String>();
-    
+
     Course zeroStudents;
     HashMap<String, String> zeroStudentsExpected = new HashMap<String, String>();
 
     Course fiveStudents;
     HashMap<String, String> fiveStudentsExpected = new HashMap<String, String>();
-    
+
     Course badDayGradeBoundary;
     HashMap<String, String> badDayGradeBoundaryExpected = new HashMap<String, String>();
-    
+
     Course emptyStudents;
     HashMap<String, String> emptyStudentsExpected = new HashMap<String, String>();
-    
+
     Course totalFailure;
     HashMap<String, String> totalFailureExpected = new HashMap<String, String>();
-    
+
     Course overAchievers;
     HashMap<String, String> overAchieversExpected = new HashMap<String, String>();
-    
+
     Course noPoints;
     HashMap<String, String> noPointsExpected = new HashMap<String, String>();
 
@@ -84,6 +91,10 @@ public class GivenBlackBox {
     Course emptyCourse;
     HashMap<String, String> emptyCourseExpected = new HashMap<String, String>();
 
+    /**
+     * Set up conditions for all tests.
+     * @throws Exception for a reason
+     */
     @Before
     public void setUp() throws Exception {
 
@@ -103,26 +114,26 @@ public class GivenBlackBox {
         // Happy Day Case Grade Boundaries
         // Four Students mix of grades
         happyDayGradeBoundary = createCourse("SER315");
-        happyDayGradeBoundary.set_points("100"  , 100);  //A
-        happyDayGradeBoundary.set_points(">89"  , 90);  //A
-        happyDayGradeBoundary.set_points(">79"  , 89);  //B
-        happyDayGradeBoundary.set_points(">59"  , 79);  //C
-        happyDayGradeBoundary.set_points(">35"  , 59);  //D
-        happyDayGradeBoundary.set_points("<=35" , 35);  //F
+        happyDayGradeBoundary.set_points("100", 100);  //A
+        happyDayGradeBoundary.set_points(">89", 90);  //A
+        happyDayGradeBoundary.set_points(">79", 89);  //B
+        happyDayGradeBoundary.set_points(">59", 79);  //C
+        happyDayGradeBoundary.set_points(">35", 59);  //D
+        happyDayGradeBoundary.set_points("<=35", 35);  //F
 
-        happyDayGradeBoundaryExpected.put("100"  , "A");
-        happyDayGradeBoundaryExpected.put(">89"  , "A");
-        happyDayGradeBoundaryExpected.put(">79"  , "B");
-        happyDayGradeBoundaryExpected.put(">59"  , "C");
-        happyDayGradeBoundaryExpected.put(">35"  , "D");
-        happyDayGradeBoundaryExpected.put("<=35" , "F");
-        
+        happyDayGradeBoundaryExpected.put("100", "A");
+        happyDayGradeBoundaryExpected.put(">89", "A");
+        happyDayGradeBoundaryExpected.put(">79", "B");
+        happyDayGradeBoundaryExpected.put(">59", "C");
+        happyDayGradeBoundaryExpected.put(">35", "D");
+        happyDayGradeBoundaryExpected.put("<=35", "F");
+
         //course created with zero students
         zeroStudents = createCourse("ser317");
-        
+
         //5 students from example
         fiveStudents = createCourse("ser318");
-        
+
         fiveStudents.set_points("Alice", 15);
         fiveStudentsExpected.put("Alice", "F");
         fiveStudents.set_points("Bill", 30);
@@ -133,35 +144,36 @@ public class GivenBlackBox {
         fiveStudentsExpected.put("Joe", "A");
         fiveStudents.set_points("Jane", 80);
         fiveStudentsExpected.put("Jane", "A");
-        
+
         // Bad Day Case Grade Boundaries
         // Four Students all negative points
         badDayGradeBoundary = createCourse("SER319");
-        badDayGradeBoundary.setMaxPoints(-100);
-        badDayGradeBoundary.set_points("100"  , 100);  //A
-        badDayGradeBoundary.set_points(">89"  , -90);  //A
-        badDayGradeBoundary.set_points(">79"  , -89);  //B
-        badDayGradeBoundary.set_points(">59"  , -79);  //C
-        badDayGradeBoundary.set_points(">35"  , -59);  //D
-        badDayGradeBoundary.set_points("<=35" , -35);  //F
 
-        badDayGradeBoundaryExpected.put("100"  , "A");
-        badDayGradeBoundaryExpected.put(">89"  , "A");
-        badDayGradeBoundaryExpected.put(">79"  , "B");
-        badDayGradeBoundaryExpected.put(">59"  , "C");
-        badDayGradeBoundaryExpected.put(">35"  , "D");
-        badDayGradeBoundaryExpected.put("<=35" , "F");
-        
+        badDayGradeBoundary.setMaxPoints(-100);
+        badDayGradeBoundary.set_points("100", -100);  //A
+        badDayGradeBoundary.set_points(">89", -90);  //A
+        badDayGradeBoundary.set_points(">79", -89);  //B
+        badDayGradeBoundary.set_points(">59", -79);  //C
+        badDayGradeBoundary.set_points(">35", -59);  //D
+        badDayGradeBoundary.set_points("<=35", -35);  //F
+
+        badDayGradeBoundaryExpected.put("100", "A");
+        badDayGradeBoundaryExpected.put(">89", "A");
+        badDayGradeBoundaryExpected.put(">79", "B");
+        badDayGradeBoundaryExpected.put(">59", "C");
+        badDayGradeBoundaryExpected.put(">35", "D");
+        badDayGradeBoundaryExpected.put("<=35", "F");
+
         //course of students with empty names
         emptyStudents = createCourse("SER320");
 
         // this would be the expected result after the method countOccurencesLetterGrades is called
         emptyStudents.set_points("", 50);
         emptyStudentsExpected.put("", "A"); 
-        
+
         //5 students, all get 0 points
         totalFailure = createCourse("ser321");
-        
+
         totalFailure.setMaxPoints(0);
         totalFailure.set_points("Alice", 0);
         totalFailureExpected.put("Alice", "F");
@@ -173,10 +185,10 @@ public class GivenBlackBox {
         totalFailureExpected.put("Joe", "F");
         totalFailure.set_points("Jane", -1);
         totalFailureExpected.put("Jane", "F");
-        
+
         //5 students, all get > max points
         overAchievers = createCourse("ser322");
-        
+
         overAchievers.setMaxPoints(10);
         overAchievers.set_points("Alice", 200);
         overAchieversExpected.put("Alice", "A");
@@ -188,6 +200,7 @@ public class GivenBlackBox {
         overAchieversExpected.put("Joe", "A");
         overAchievers.set_points("Jane", -100);
         overAchieversExpected.put("Jane", "F");
+<<<<<<< HEAD
         
         //null student with 0 points
         noPoints = createCourse("ser323");
@@ -241,6 +254,7 @@ public class GivenBlackBox {
         emptyCourse.set_points("c", 0);
         emptyCourseExpected.put("c", "F");
         emptyCourse.setName("new");
+
     }
 
     @After
@@ -251,8 +265,9 @@ public class GivenBlackBox {
     @Test
     public void oneStudent() {
         Map<String, String> ans = oneStudent.curveLetterGrades();
-        for(Map.Entry<String, String> e : ans.entrySet())
+        for (Map.Entry<String, String> e : ans.entrySet()) {
             System.out.println(e.getKey() + " " + e.getValue());
+        }
         assertTrue(ans.equals(oneStudentExpected));
     }
 
@@ -260,64 +275,72 @@ public class GivenBlackBox {
     @Test
     public void happyDayGradeBoundaries() {
         Map<String, String> ans = happyDayGradeBoundary.curveLetterGrades();
-        for(Map.Entry<String, String> e : ans.entrySet())
+        for (Map.Entry<String, String> e : ans.entrySet()) {
             System.out.println(e.getKey() + " " + e.getValue());
+        }
         assertTrue(ans.equals(happyDayGradeBoundaryExpected));
     }
-    
+
     @Test
     public void zeroStudents() {
         Map<String, String> ans = zeroStudents.curveLetterGrades();
-        for(Map.Entry<String, String> e : ans.entrySet())
+        for (Map.Entry<String, String> e : ans.entrySet()) {
             System.out.println(e.getKey() + " " + e.getValue());
+        }
         assertTrue(ans.equals(zeroStudentsExpected));
     }
-    
+
     @Test
     public void fiveStudents() {
         Map<String, String> ans = fiveStudents.curveLetterGrades();
-        for(Map.Entry<String, String> e : ans.entrySet())
+        for (Map.Entry<String, String> e : ans.entrySet()) {
             System.out.println(e.getKey() + " " + e.getValue());
+        }
         assertTrue(ans.equals(fiveStudentsExpected));
     }
-    
+
     @Test
     public void badDayGradeBoundaries() {
         Map<String, String> ans = badDayGradeBoundary.curveLetterGrades();
-        for(Map.Entry<String, String> e : ans.entrySet())
+        for (Map.Entry<String, String> e : ans.entrySet()) {
             System.out.println(e.getKey() + " " + e.getValue());
+        }
         assertTrue(ans.equals(badDayGradeBoundaryExpected));
     }
-    
+
     @Test
     public void emptyStudents() {
         Map<String, String> ans = emptyStudents.curveLetterGrades();
-        for(Map.Entry<String, String> e : ans.entrySet())
+        for (Map.Entry<String, String> e : ans.entrySet()) {
             System.out.println(e.getKey() + " " + e.getValue());
+        }
         assertTrue(ans.equals(emptyStudentsExpected));
     }
-    
+
     @Test
     public void totalFailure() {
         Map<String, String> ans = totalFailure.curveLetterGrades();
-        for(Map.Entry<String, String> e : ans.entrySet())
+        for (Map.Entry<String, String> e : ans.entrySet()) {
             System.out.println(e.getKey() + " " + e.getValue());
+        }
         assertTrue(ans.equals(totalFailureExpected));
     }
-    
+
     @Test
     public void overAchievers() {
         Map<String, String> ans = overAchievers.curveLetterGrades();
-        for(Map.Entry<String, String> e : ans.entrySet())
+        for (Map.Entry<String, String> e : ans.entrySet()) {
             System.out.println(e.getKey() + " " + e.getValue());
+        }
         assertTrue(ans.equals(overAchieversExpected));
     }
-    
+
     @Test
     public void noPoints() {
         Map<String, String> ans = noPoints.curveLetterGrades();
-        for(Map.Entry<String, String> e : ans.entrySet())
+        for (Map.Entry<String, String> e : ans.entrySet()) {
             System.out.println(e.getKey() + " " + e.getValue());
+        }
         assertTrue(ans.equals(noPointsExpected));
     }
     

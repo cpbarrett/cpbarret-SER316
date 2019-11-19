@@ -1,14 +1,12 @@
-import main.java.*;
-
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 import java.util.HashMap;
+
+import main.java.Course;
 
 import org.junit.Before;
 
 import org.junit.Test;
-
-import main.java.Course;
 
 
 public class GivenWhiteBox {

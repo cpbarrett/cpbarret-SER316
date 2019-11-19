@@ -8,10 +8,15 @@ import java.util.ArrayList;
 public class Student {
     private String asurite;
     private Major major;
-    private double overall_grade;
+    private double overallGrade;
     private ArrayList<Course> courses = new ArrayList<Course>();
-    
-    public Student(String asurite, Major major){
+
+    /**
+     * Constructor for student.
+     * @param asurite student id
+     * @param major of student
+     */
+    public Student(String asurite, Major major) {
         this.setAsurite(asurite);
         this.setMajor(major);
         setOverall_grade(0);
@@ -29,30 +34,47 @@ public class Student {
     public Major getMajor() {
         return major;
     }
-    
+
     public boolean register_forCourse(Course course) {
-      course.addStudent(this);
-      return courses.add(course);
-  }
+        course.addStudent(this);
+        return courses.add(course);
+    }
 
     public void setMajor(Major major) {
         this.major = major;
     }
 
     public double getOverall_grade() {
-        return overall_grade;
+        return overallGrade;
     }
 
-    public void setOverall_grade(double overall_grade) {
-        this.overall_grade = overall_grade;
+    public void setOverall_grade(double overallGrade) {
+        this.overallGrade = overallGrade;
     }
 
-    public boolean equals(Object other){
-        if(other == null) return false;
-        if(other == this) return true;
-        if(other.getClass() != this.getClass()) return false;
+    /**
+     * Test to check if the students are the same student.
+     */
+    public boolean equals(Object other) {
+        if (other == null) {
+            return false;
+        }
+        if (other == this) {
+            return true;
+        }
+        if (other.getClass() != this.getClass()) {
+            return false;
+        }
         Student s = (Student) other;
         return this.getAsurite().equals(s.getAsurite());
     }
-
+    
+    /**
+     * Overrides the java object.hashcode().
+     */
+    @Override
+    public int hashCode() {
+        assert false : "hashCode not designed";
+        return 42; // any arbitrary constant will do
+    }
 }
