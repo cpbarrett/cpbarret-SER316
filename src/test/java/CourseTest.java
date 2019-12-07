@@ -45,13 +45,13 @@ public class CourseTest {
 
     @Test
     public void uncurvedFiveStudents() {
-        test.set_points("Joey", 100);
+        test.set_points("Alice", 100);
         HashMap<String, Integer> uncurved = test.countOccurencesLetterGrades(false);
         assertTrue(uncurved.get("A") == 1);
         assertTrue(uncurved.get("B") == 1);
         assertTrue(uncurved.get("C") == 1);
         assertTrue(uncurved.get("D") == 1);
-        assertTrue(uncurved.get("F") == 2);
+        assertTrue(uncurved.get("F") == 1);
     }
 
     @Test
@@ -63,7 +63,6 @@ public class CourseTest {
         assertTrue(curved.get("C") == 1);
         assertTrue(curved.get("D") == 1);
         assertTrue(curved.get("F") == 1);
-        assertTrue(test.getName().equals("SER316"));
     }
 
     @Test

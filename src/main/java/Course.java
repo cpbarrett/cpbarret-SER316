@@ -1,9 +1,6 @@
 package main.java;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -295,6 +292,11 @@ public class Course {
         if (theClass.isEmpty()) {
             throw new NullPointerException();
         }
+        
+        return gradeCurver(theClass);
+    }
+    
+    private Map<String, String> gradeCurver(List<Student> theClass) {
         HashMap<String,String> finalGrades = new HashMap<String,String>();
 
         int curve = Math.abs(getMaxPoints() - calculateMax());
