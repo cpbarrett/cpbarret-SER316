@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -50,7 +51,7 @@ public class Course {
      * Calculates course avg grades.
      */
     public double calculateAverageWithoutMinWithoutMax() throws NullPointerException {
-        ArrayList<Integer> collection = getValues();
+        List<Integer> collection = getValues();
 
         int counter = 0;
         int min = Integer.MAX_VALUE;
@@ -93,7 +94,7 @@ public class Course {
      * Students should only be added when they are not yet in the course 
      * (names (asurite member) needs to be unique)
      */
-    ArrayList<Student> students  = new ArrayList<Student>();
+    List<Student> students  = new ArrayList<Student>();
 
     /**
      * Adds a student to the course.
@@ -141,7 +142,7 @@ public class Course {
     }
 
 
-    public ArrayList<Student> getStudents() {
+    public List<Student> getStudents() {
         return students;
     }
     
@@ -290,7 +291,7 @@ public class Course {
      * @throws NullPointerException if class is empty
      */
     public Map<String, String> curveLetterGrades() throws NullPointerException {
-        ArrayList<Student> theClass = getStudents();
+        List<Student> theClass = getStudents();
         if (theClass.isEmpty()) {
             throw new NullPointerException();
         }
