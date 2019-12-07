@@ -146,7 +146,7 @@ public class Course {
         return students;
     }
     
-    public ArrayList<Integer> getValues() {
+    public List<Integer> getValues() {
         return new ArrayList<Integer>(points.values());
     }
 
@@ -156,7 +156,7 @@ public class Course {
      * @return list of grades
      * @throws NullPointerException if no students exist
      */
-    public ArrayList<Double> calculatePercentiles(ArrayList<Integer> collection) 
+    public List<Double> calculatePercentiles(List<Integer> collection) 
             throws NullPointerException {
         if (collection == null) {
             throw new NullPointerException();
@@ -166,7 +166,7 @@ public class Course {
         int maxMarks = calculateMax();
         System.out.println("Test: " + maxMarks);
         double eachPercentile = 0.0;
-        ArrayList<Double> percentileList = new ArrayList<Double>();
+        List<Double> percentileList = new ArrayList<Double>();
 
         for (int element : collection) {
 
@@ -186,7 +186,7 @@ public class Course {
      * @throws NullPointerException if no students exist
      */
     public int calculateMax() throws NullPointerException {
-        ArrayList<Integer> collection = getValues();
+        List<Integer> collection = getValues();
         
         if (collection.isEmpty()) {
             throw new NullPointerException();
@@ -238,7 +238,7 @@ public class Course {
         occur.put("F", 0);
 
         if (!curved) {
-            ArrayList<Integer> collection = getValues();
+            List<Integer> collection = getValues();
 
             if (collection.isEmpty()) {
                 throw new NullPointerException();
