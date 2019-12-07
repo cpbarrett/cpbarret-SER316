@@ -239,21 +239,8 @@ public class Course {
 
             if (collection.isEmpty()) {
                 throw new NullPointerException();
-            }
-
-            //values changed to match scale
-            for (double value : collection) {
-                if ((double) value / maxPoints * 100 > 89.0) {
-                    occur.put("A", occur.get("A") + 1);
-                } else if ((double) value / maxPoints * 100 > 79.0 && value / maxPoints <= 89.0) {
-                    occur.put("B", occur.get("B") + 1);
-                } else if ((double) value / maxPoints * 100 > 59.0 && value / maxPoints <= 79.0) {
-                    occur.put("C", occur.get("C") + 1);
-                } else if ((double) value / maxPoints * 100 > 35.0 && value / maxPoints <= 59.0) {
-                    occur.put("D", occur.get("D") + 1);
-                } else {
-                    occur.put("F", occur.get("F") + 1);
-                }
+            } else {
+                return uncurvedGradeCounter(collection);
             }
         } else {
             //changed to match the correct input type
@@ -262,6 +249,31 @@ public class Course {
             }
         }
         return occur;
+    }
+    
+    private HashMap<String, Integer> uncurvedGradeCounter(List<Integer> collection){
+        HashMap<String, Integer> occur = new HashMap<String, Integer>();
+        occur.put("A", 0);
+        occur.put("B", 0);
+        occur.put("C", 0);
+        occur.put("D", 0);
+        occur.put("F", 0);
+        
+      //values changed to match scale
+        for (double value : collection) {
+            if ((double) value / maxPoints * 100 > 89.0) {
+                occur.put("A", occur.get("A") + 1);
+            } else if ((double) value / maxPoints * 100 > 79.0 && value / maxPoints <= 89.0) {
+                occur.put("B", occur.get("B") + 1);
+            } else if ((double) value / maxPoints * 100 > 59.0 && value / maxPoints <= 79.0) {
+                occur.put("C", occur.get("C") + 1);
+            } else if ((double) value / maxPoints * 100 > 35.0 && value / maxPoints <= 59.0) {
+                occur.put("D", occur.get("D") + 1);
+            } else {
+                occur.put("F", occur.get("F") + 1);
+            }
+        }
+            return occur;
     }
 
     /** This will be needed for assignment 3 (do not change in assignment 2)
