@@ -1,9 +1,10 @@
 package main.java;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class Main {
-    static HashMap<String, Student> students = new HashMap<>();
+    static Map<String, Student> students = new HashMap<>();
 
     //change to ones that works with happy day case
     static HashMap<String, CourseGrades0> courses = new HashMap<>(); 
