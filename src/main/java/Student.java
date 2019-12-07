@@ -1,6 +1,7 @@
 package main.java;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 
@@ -8,7 +9,7 @@ public class Student {
     private String asurite;
     private Major major;
     private double overallGrade;
-    private ArrayList<Course> courses = new ArrayList<Course>();
+    private List<Course> courses = new ArrayList<Course>();
 
     /**
      * Constructor for student.
