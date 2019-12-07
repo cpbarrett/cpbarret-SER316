@@ -74,10 +74,8 @@ public class Course {
                     allPoints = allPoints + point;
                 }
             }
-
             int totalPoints = allPoints - max - min;
             return totalPoints / (double) (counter - 1);
-
         }
     }
 
